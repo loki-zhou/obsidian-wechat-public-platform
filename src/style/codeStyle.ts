@@ -1,120 +1,108 @@
 export const codeStyle = `/*
-
-Atom One Dark by Daniel Gamage
-Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
-
-base:    #282c34
-mono-1:  #abb2bf
-mono-2:  #818896
-mono-3:  #5c6370
-hue-1:   #56b6c2
-hue-2:   #61aeee
-hue-3:   #c678dd
-hue-4:   #98c379
-hue-5:   #e06c75
-hue-5-2: #be5046
-hue-6:   #d19a66
-hue-6-2: #e6c07b
-
+微信公众号兼容的代码样式
+优化后的样式确保在微信编辑器中正确显示
 */
 
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 16px;
-  color: #abb2bf;
-  background: #282c34;
+/* 行内代码样式 - 微信兼容 */
+#nice p code, 
+#nice li code {
+  color: #e74c3c !important;
+  background-color: #f8f9fa !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+  font-family: 'Courier New', Consolas, Monaco, monospace !important;
+  font-size: 14px !important;
+  border: 1px solid #e1e8ed !important;
 }
 
-.hljs-comment,
-.hljs-quote {
-  color: #5c6370;
-  font-style: italic;
+/* 代码块容器样式 - 微信兼容 */
+#nice pre {
+  background-color: #282c34 !important;
+  color: #abb2bf !important;
+  padding: 16px !important;
+  border-radius: 5px !important;
+  margin: 15px 0 !important;
+  font-family: 'Courier New', Consolas, Monaco, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  border: 1px solid #3e4451 !important;
 }
 
-.hljs-doctag,
-.hljs-keyword,
-.hljs-formula {
-  color: #c678dd;
+#nice pre code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  display: block !important;
 }
 
-.hljs-section,
-.hljs-name,
-.hljs-selector-tag,
-.hljs-deletion,
-.hljs-subst {
-  color: #e06c75;
+/* 代码块语言标签 */
+#nice .code-lang-label {
+  color: #61aeee !important;
+  font-size: 12px !important;
+  margin-bottom: 8px !important;
+  opacity: 0.8 !important;
+  font-weight: normal !important;
 }
 
-.hljs-literal {
-  color: #56b6c2;
+/* 代码行样式 */
+#nice .code-line {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+  display: block !important;
 }
 
-.hljs-string,
-.hljs-regexp,
-.hljs-addition,
-.hljs-attribute,
-.hljs-meta-string {
-  color: #98c379;
+/* 语法高亮颜色 - 简化版本确保微信兼容 */
+#nice .hljs-comment,
+#nice .hljs-quote {
+  color: #5c6370 !important;
+  font-style: italic !important;
 }
 
-.hljs-built_in,
-.hljs-class .hljs-title {
-  color: #e6c07b;
+#nice .hljs-keyword,
+#nice .hljs-selector-tag,
+#nice .hljs-type {
+  color: #c678dd !important;
 }
 
-.hljs-attr,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-type,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-number {
-  color: #d19a66;
+#nice .hljs-string,
+#nice .hljs-attr {
+  color: #98c379 !important;
 }
 
-.hljs-symbol,
-.hljs-bullet,
-.hljs-link,
-.hljs-meta,
-.hljs-selector-id,
-.hljs-title {
-  color: #61aeee;
+#nice .hljs-number,
+#nice .hljs-literal {
+  color: #d19a66 !important;
 }
 
-.hljs-emphasis {
-  font-style: italic;
+#nice .hljs-title,
+#nice .hljs-function {
+  color: #61aeee !important;
 }
 
-.hljs-strong {
-  font-weight: bold;
+#nice .hljs-variable,
+#nice .hljs-name {
+  color: #e06c75 !important;
 }
 
-.hljs-link {
-  text-decoration: underline;
-}
-
-#nice .custom code {
-  padding-top: 15px;
-  background: #282c34;
-  border-radius: 5px;
-}
-
-#nice .custom:before {
-  content: '';
-  display:block;
-  height: 30px;
-  width: 100%;
-  background-size:40px;
-  background-repeat: no-repeat;
-  background-color: #282c34;
-  margin-bottom: -7px;
-  border-radius: 5px;
-  background-position: 10px 10px;
-}
-
-#nice .custom {
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
+/* 确保代码块在微信中不被过滤 */
+#nice .wechat-code-block {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e1e8ed !important;
+  border-radius: 5px !important;
+  padding: 12px !important;
+  margin: 10px 0 !important;
+  font-family: 'Courier New', Consolas, Monaco, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  color: #333333 !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
 }`;

@@ -3,7 +3,6 @@ import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import {calloutRender} from "./callouts";
 import { bgHighlight } from "./bghighlight";
-import { removeWeChatPreCode } from "./code";
 
 
 export interface ParseOptions {
@@ -70,23 +69,20 @@ export async function markedParse(content:string, op:ParseOptions, extensions:an
 	    highlight(code, lang, info) {
             const text = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             const lines = text.split("\n");
+            
+            // 为微信公众号优化的代码块格式
             const codeLines = [];
-            const numbers = [];
-            for (let i = 0; i < lines.length - 1; i++) {
-                codeLines.push('<code><span class="code-snippet_outer">' + (lines[i] || "<br>") + "</span></code>");
-                numbers.push("<li></li>");
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line !== undefined && (i < lines.length - 1 || line.trim() !== "")) {
+                    codeLines.push(`<div style="margin: 0; padding: 0; line-height: 1.5; min-height: 21px;">${line || "&nbsp;"}</div>`);
+                }
             }
-            return (
-                '<section class="code-snippet__fix code-snippet__js">' +
-                '<ul class="code-snippet__line-index code-snippet__js">' +
-                numbers.join("") +
-                "</ul>" +
-                '<pre class="code-snippet__js" data-lang="' +
-                lang +
-                '">' +
-                codeLines.join("") +
-                "</pre></section>"
-            );
+            
+            // 使用微信兼容的HTML结构和内联样式，移除多余的语言标签
+            return `<div style="background-color: #282c34; color: #abb2bf; padding: 16px; border-radius: 5px; margin: 10px 0; font-family: 'Courier New', Consolas, Monaco, monospace; font-size: 14px; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; border: 1px solid #3e4451;">
+                ${codeLines.join('')}
+            </div>`;
 	    }
 	  })
 	);
@@ -103,7 +99,6 @@ export async function markedParse(content:string, op:ParseOptions, extensions:an
 		},
 		bgHighlight(),
 		EmbedBlockMark(),
-		removeWeChatPreCode(),
 		... extensions
 	]});
 

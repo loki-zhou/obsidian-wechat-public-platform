@@ -97,20 +97,9 @@ export default class ApiManager {
 	}
 
 	public formatCodeHTML(html: string) {
-		// 使用正则表达式匹配 <code> 标签中的内容
-		const formattedHTML = html.replace(/(<code[^>]*>)(.*?)<\/code>/gs, function(match, p1, p2) {
-			// console.log(match);
-			// console.log("p1", p1,"\n p2", p2);
-			
-			let replacedCode = "";
-			const lines = p2.split("\n");
-			for (let i = 0; i < lines.length - 1; i++) {
-				replacedCode += p1 + lines[i] + "</code>";
-			}
-			return p1 + replacedCode;
-		  });
-			  
-		return formattedHTML;
+		// 暂时禁用这个函数的处理，避免与 markedHighlight 冲突
+		// 让 markedHighlight 直接处理代码块格式化
+		return html;
 	}
 
 	public async refreshAccessToken(appid: string, secret: string) : Promise<Boolean> {
