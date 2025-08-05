@@ -87,14 +87,19 @@ export async function markedParse(content:string, op:ParseOptions, extensions:an
             // 按行分割高亮后的代码
             const highlightedLines = highlightedCode.split("\n");
             
-            // 为微信公众号优化的代码块格式，保持原有的空格和缩进
+            // 生成行号列表
+            const lineNumbers = [];
             const codeLines = [];
+            
             for (let i = 0; i < originalLines.length; i++) {
                 const originalLine = originalLines[i];
                 const highlightedLine = highlightedLines[i] || originalLine.replace(/</g, "&lt;").replace(/>/g, "&gt;");
                 
                 if (originalLine !== undefined && (i < originalLines.length - 1 || originalLine.trim() !== "")) {
-                    // 正确处理空格：只替换HTML标签外的空格，保持标签内的属性完整
+                    // 添加行号
+                    lineNumbers.push(`<li style="list-style-type: none; text-align: right; line-height: 26px; color: black; margin: 0;"><span style="min-width: 1.5em; text-align: right; left: -2.5em; counter-increment: line; display: inline; color: rgba(0,0,0,0.3);">${i + 1}</span></li>`);
+                    
+                    // 处理代码行
                     let processedLine = highlightedLine;
                     
                     // 使用正则表达式，只替换不在HTML标签内的空格
@@ -105,14 +110,19 @@ export async function markedParse(content:string, op:ParseOptions, extensions:an
                         processedLine = "&nbsp;";
                     }
                     
-                    codeLines.push(`<div style="margin: 0; padding: 0; line-height: 1.5; min-height: 21px;">${processedLine}</div>`);
+                    codeLines.push(`<code style="border-radius: 0px; -webkit-overflow-scrolling: touch; text-align: left; font-size: 14px; display: block; white-space: pre; display: flex; position: relative; font-family: Consolas,'Liberation Mono',Menlo,Courier,monospace; padding: 0px;"><span class="code-snippet_outer" style="line-height: 26px;">${processedLine}</span></code>`);
                 }
             }
             
-            // 使用微信兼容的HTML结构和内联样式
-            return `<div style="background-color: #282c34; color: #abb2bf; padding: 16px; border-radius: 5px; margin: 10px 0; font-family: 'Courier New', Consolas, Monaco, monospace; font-size: 14px; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; border: 1px solid #3e4451;">
-                ${codeLines.join('')}
-            </div>`;
+            // 使用微信兼容的HTML结构，参考你提供的示例
+            return `<section class="code-snippet__fix code-snippet__js" data-tool="markdown.com.cn编辑器" style="font-size: 14px; margin: 10px 0; display: block; color: #333; position: relative; background-color: rgba(0,0,0,0.03); border: 1px solid #f0f0f0; border-radius: 2px; display: flex; line-height: 20px; word-wrap: break-word !important;">
+                <ul class="code-snippet__line-index code-snippet__js" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; counter-reset: line; flex-shrink: 0; height: 100%; padding: 1em; list-style-type: none; padding: 16px; margin: 0;">
+                    ${lineNumbers.join('')}
+                </ul>
+                <pre class="code-snippet__js" data-lang="${lang || ''}" style="margin-bottom: 10px; margin-top: 0px; overflow-x: auto; padding: 16px; padding-left: 0; white-space: normal; flex: 1; -webkit-overflow-scrolling: touch;">
+                    ${codeLines.join('')}
+                </pre>
+            </section>`;
 	    }
 	  })
 	);

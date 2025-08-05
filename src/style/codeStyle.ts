@@ -105,4 +105,77 @@ export const codeStyle = `/*
   overflow-x: auto !important;
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
+}
+
+/* 微信公众号兼容的带行号代码块样式 */
+#nice .code-snippet__fix {
+  font-size: 14px !important;
+  margin: 10px 0 !important;
+  display: block !important;
+  color: #333 !important;
+  position: relative !important;
+  background-color: rgba(0,0,0,0.03) !important;
+  border: 1px solid #f0f0f0 !important;
+  border-radius: 2px !important;
+  display: flex !important;
+  line-height: 20px !important;
+  word-wrap: break-word !important;
+}
+
+#nice .code-snippet__line-index {
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+  padding-left: 25px !important;
+  color: black !important;
+  counter-reset: line !important;
+  flex-shrink: 0 !important;
+  height: 100% !important;
+  padding: 16px !important;
+  margin: 0 !important;
+  list-style-type: none !important;
+}
+
+#nice .code-snippet__line-index li {
+  list-style-type: none !important;
+  text-align: right !important;
+  line-height: 26px !important;
+  color: black !important;
+  margin: 0 !important;
+}
+
+#nice .code-snippet__line-index li span {
+  min-width: 1.5em !important;
+  text-align: right !important;
+  left: -2.5em !important;
+  counter-increment: line !important;
+  display: inline !important;
+  color: rgba(0,0,0,0.3) !important;
+}
+
+#nice .code-snippet__js {
+  margin-bottom: 10px !important;
+  margin-top: 0px !important;
+  overflow-x: auto !important;
+  padding: 16px !important;
+  padding-left: 0 !important;
+  white-space: normal !important;
+  flex: 1 !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+#nice .code-snippet__js code {
+  border-radius: 0px !important;
+  -webkit-overflow-scrolling: touch !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  display: block !important;
+  white-space: pre !important;
+  display: flex !important;
+  position: relative !important;
+  font-family: Consolas,'Liberation Mono',Menlo,Courier,monospace !important;
+  padding: 0px !important;
+}
+
+#nice .code-snippet_outer {
+  line-height: 26px !important;
 }`;

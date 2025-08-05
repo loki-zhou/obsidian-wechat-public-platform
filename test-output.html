@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信公众号代码块测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* 微信公众号兼容的带行号代码块样式 */
+        .code-snippet__fix {
+            font-size: 14px !important;
+            margin: 10px 0 !important;
+            display: block !important;
+            color: #333 !important;
+            position: relative !important;
+            background-color: rgba(0,0,0,0.03) !important;
+            border: 1px solid #f0f0f0 !important;
+            border-radius: 2px !important;
+            display: flex !important;
+            line-height: 20px !important;
+            word-wrap: break-word !important;
+        }
+
+        .code-snippet__line-index {
+            margin-top: 8px !important;
+            margin-bottom: 8px !important;
+            padding-left: 25px !important;
+            color: black !important;
+            counter-reset: line !important;
+            flex-shrink: 0 !important;
+            height: 100% !important;
+            padding: 16px !important;
+            margin: 0 !important;
+            list-style-type: none !important;
+        }
+
+        .code-snippet__line-index li {
+            list-style-type: none !important;
+            text-align: right !important;
+            line-height: 26px !important;
+            color: black !important;
+            margin: 0 !important;
+        }
+
+        .code-snippet__line-index li span {
+            min-width: 1.5em !important;
+            text-align: right !important;
+            left: -2.5em !important;
+            counter-increment: line !important;
+            display: inline !important;
+            color: rgba(0,0,0,0.3) !important;
+        }
+
+        .code-snippet__js {
+            margin-bottom: 10px !important;
+            margin-top: 0px !important;
+            overflow-x: auto !important;
+            padding: 16px !important;
+            padding-left: 0 !important;
+            white-space: normal !important;
+            flex: 1 !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        .code-snippet__js code {
+            border-radius: 0px !important;
+            -webkit-overflow-scrolling: touch !important;
+            text-align: left !important;
+            font-size: 14px !important;
+            display: block !important;
+            white-space: pre !important;
+            display: flex !important;
+            position: relative !important;
+            font-family: Consolas,'Liberation Mono',Menlo,Courier,monospace !important;
+            padding: 0px !important;
+        }
+
+        .code-snippet_outer {
+            line-height: 26px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="nice" data-tool="markdown编辑器" data-website="https://markdown.com.cn/editor" style="font-size: 16px; color: black; padding: 25px 30px; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: justify; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-top: -10px;">
+            <h1 style="font-size: 24px; font-weight: bold; margin: 20px 0 10px 0;">测试代码块渲染</h1><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br>这是一个测试文档，用来验证微信公众号兼容的代码块渲染效果。</p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br><h2 style="font-size: 20px; font-weight: bold; margin: 16px 0 8px 0;">JavaScript 代码示例</h2></p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br>```javascript</p><p style="margin: 8px 0; line-height: 1.6;"><br>// 这是一个简单的 JavaScript 函数</p><p style="margin: 8px 0; line-height: 1.6;"><br>function greetUser(name) {</p><p style="margin: 8px 0; line-height: 1.6;"><br>    if (!name) {</p><p style="margin: 8px 0; line-height: 1.6;"><br>        console.log('请提供用户名');</p><p style="margin: 8px 0; line-height: 1.6;"><br>        return;</p><p style="margin: 8px 0; line-height: 1.6;"><br>    }</p><p style="margin: 8px 0; line-height: 1.6;"><br>    </p><p style="margin: 8px 0; line-height: 1.6;"><br>    const greeting = `你好，${name}！`;</p><p style="margin: 8px 0; line-height: 1.6;"><br>    console.log(greeting);</p><p style="margin: 8px 0; line-height: 1.6;"><br>    </p><p style="margin: 8px 0; line-height: 1.6;"><br>    // 返回问候语</p><p style="margin: 8px 0; line-height: 1.6;"><br>    return greeting;</p><p style="margin: 8px 0; line-height: 1.6;"><br>}</p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br>// 调用函数</p><p style="margin: 8px 0; line-height: 1.6;"><br>greetUser('张三');</p><p style="margin: 8px 0; line-height: 1.6;"><br>```</p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br><h2 style="font-size: 20px; font-weight: bold; margin: 16px 0 8px 0;">Python 代码示例</h2></p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br>```python</p><p style="margin: 8px 0; line-height: 1.6;"><br><h1 style="font-size: 24px; font-weight: bold; margin: 20px 0 10px 0;">Python 示例代码</h1></p><p style="margin: 8px 0; line-height: 1.6;"><br>def calculate_fibonacci(n):</p><p style="margin: 8px 0; line-height: 1.6;"><br>    """计算斐波那契数列的第n项"""</p><p style="margin: 8px 0; line-height: 1.6;"><br>    if n <= 1:</p><p style="margin: 8px 0; line-height: 1.6;"><br>        return n</p><p style="margin: 8px 0; line-height: 1.6;"><br>    </p><p style="margin: 8px 0; line-height: 1.6;"><br>    a, b = 0, 1</p><p style="margin: 8px 0; line-height: 1.6;"><br>    for i in range(2, n + 1):</p><p style="margin: 8px 0; line-height: 1.6;"><br>        a, b = b, a + b</p><p style="margin: 8px 0; line-height: 1.6;"><br>    </p><p style="margin: 8px 0; line-height: 1.6;"><br>    return b</p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br><h1 style="font-size: 24px; font-weight: bold; margin: 20px 0 10px 0;">测试函数</h1></p><p style="margin: 8px 0; line-height: 1.6;"><br>for i in range(10):</p><p style="margin: 8px 0; line-height: 1.6;"><br>    print(f"fibonacci({i}) = {calculate_fibonacci(i)}")</p><p style="margin: 8px 0; line-height: 1.6;"><br>```</p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br><h2 style="font-size: 20px; font-weight: bold; margin: 16px 0 8px 0;">HTML 代码示例</h2></p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br>```html</p><p style="margin: 8px 0; line-height: 1.6;"><br><!DOCTYPE html></p><p style="margin: 8px 0; line-height: 1.6;"><br><html lang="zh-CN"></p><p style="margin: 8px 0; line-height: 1.6;"><br><head></p><p style="margin: 8px 0; line-height: 1.6;"><br>    <meta charset="UTF-8"></p><p style="margin: 8px 0; line-height: 1.6;"><br>    <meta name="viewport" content="width=device-width, initial-scale=1.0"></p><p style="margin: 8px 0; line-height: 1.6;"><br>    <title>测试页面</title></p><p style="margin: 8px 0; line-height: 1.6;"><br></head></p><p style="margin: 8px 0; line-height: 1.6;"><br><body></p><p style="margin: 8px 0; line-height: 1.6;"><br>    <h1>欢迎来到我的网站</h1></p><p style="margin: 8px 0; line-height: 1.6;"><br>    <p>这是一个测试页面。</p></p><p style="margin: 8px 0; line-height: 1.6;"><br></body></p><p style="margin: 8px 0; line-height: 1.6;"><br></html></p><p style="margin: 8px 0; line-height: 1.6;"><br>```</p><p style="margin: 8px 0; line-height: 1.6;"><br></p><p style="margin: 8px 0; line-height: 1.6;"><br>这些代码块现在应该能够在微信公众号中正确显示行号和格式化的代码内容。</p>
+        </section>
+    </div>
+</body>
+</html>
