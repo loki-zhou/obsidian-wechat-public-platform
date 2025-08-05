@@ -81,6 +81,7 @@ export async function markedParse(content:string, op:ParseOptions, extensions:an
 		} else {
 			highlightedCode = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 		}
+		highlightedCode = highlightedCode.replace(/&#x27;/g, "'");
 
 		const lines = highlightedCode.split('\n');
 		const lineNumbers: string[] = [];
