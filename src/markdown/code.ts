@@ -26,12 +26,8 @@ export function weChatCodeBlockOptimizer() {
             }
         },
         renderer(token: Tokens.Generic) {
-            // 将代码块转换为微信兼容的格式，而不是移除
-            const content = token.content
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
-            
-            return `<div class="wechat-code-block" style="background-color: #f8f9fa; border: 1px solid #e1e8ed; border-radius: 5px; padding: 12px; margin: 10px 0; font-family: 'Courier New', Consolas, Monaco, monospace; font-size: 14px; line-height: 1.4; color: #333333; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;">${content}</div>`;
+            // 禁用这个扩展，因为它与自定义的 code renderer 冲突
+            return "";
         }
     }
 }

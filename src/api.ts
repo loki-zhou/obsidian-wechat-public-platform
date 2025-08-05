@@ -77,23 +77,44 @@ export default class ApiManager {
 	}
 
 	public solveHTML(html: string): string {
-		html = html.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
-		html = html.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
-		html = html.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
-		html = html.replace(/mjx-container/g, "section");
-		html = html.replace(/class="mjx-solid"/g, 'fill="none" stroke-width="70"');
-		html = html.replace(/<mjx-assistive-mml.+?<\/mjx-assistive-mml>/g, "");
-		let res = "";
+		// "Protect" code blocks from juice by replacing them with placeholders.
+		const codeBlocks: string[] = [];
+		const codeBlockRegex = /<section class="code-snippet__fix[\s\S]*?<\/section>/g;
+		
+		const protectedHtml = html.replace(codeBlockRegex, (match) => {
+			const placeholder = `<!--CODEBLOCK_PLACEHOLDER_${codeBlocks.length}-->`;
+			codeBlocks.push(match);
+			return placeholder;
+		});
+
+		let juicedHtml = "";
 		try {
-			res = juice.inlineContent(html, basicStyle + wechatFormat + codeStyle + calloutStyle + this.customCss, {
+			juicedHtml = juice.inlineContent(protectedHtml, basicStyle + wechatFormat + codeStyle + calloutStyle + this.customCss, {
 				inlinePseudoElements: true,
 				preserveImportant: true,
 			});
 		} catch (e) {
 			new Notice("请检查 CSS 文件是否编写正确！");
+			// In case of error, return the original html to avoid breaking everything.
+			return html;
 		}
 
-		return res;
+		// Restore the original code blocks.
+		let finalHtml = juicedHtml;
+		codeBlocks.forEach((block, index) => {
+			const placeholder = `<!--CODEBLOCK_PLACEHOLDER_${index}-->`;
+			finalHtml = finalHtml.replace(placeholder, block);
+		});
+
+		// Final cleanups for MathJax and other elements
+		finalHtml = finalHtml.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
+		finalHtml = finalHtml.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
+		finalHtml = finalHtml.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
+		finalHtml = finalHtml.replace(/mjx-container/g, "section");
+		finalHtml = finalHtml.replace(/class="mjx-solid"/g, 'fill="none" stroke-width="70"');
+		finalHtml = finalHtml.replace(/<mjx-assistive-mml.+?<\/mjx-assistive-mml>/g, "");
+
+		return finalHtml;
 	}
 
 	public formatCodeHTML(html: string) {
