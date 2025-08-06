@@ -254,66 +254,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
   background-color: #f0f0f0;
 }
 
-/* 微信代码块 */
-/* background-color: rgba(0,0,0,0.03);*/
-#nice .code-snippet__fix {
-  word-wrap: break-word !important;
-  margin: 10px 0;
-  display: block;
-  color: #333;
-  position: relative;
-  background-color: rgba(0,0,0,0.03);
-  border: 1px solid #f0f0f0;
-  border-radius: 2px;
-  display: flex;
-  line-height: 20px;
-}
-#nice .code-snippet__fix pre {
-  margin-bottom: 10px;
-  margin-top: 0px;
-}
-#nice .code-snippet__fix .code-snippet__line-index {
-  counter-reset: line;
-  flex-shrink: 0;
-  height: 100%;
-  padding: 1em;
-  list-style-type: none;
-  padding: 16px;
-  margin: 0;
-}
-#nice .code-snippet__fix .code-snippet__line-index li {
-  list-style-type: none;
-  text-align: right;
-  line-height: 26px;
-  color: black;
-  margin: 0;
-}
-#nice .code-snippet__fix .code-snippet__line-index li::before {
-  min-width: 1.5em;
-  text-align: right;
-  left: -2.5em;
-  counter-increment: line;
-  content: counter(line);
-  display: inline;
-  color: rgba(0,0,0,0.3);
-}
-#nice .code-snippet__fix pre {
-  overflow-x: auto;
-  padding: 16px;
-  padding-left: 0;
-  white-space: normal;
-  flex: 1;
-  -webkit-overflow-scrolling: touch;
-}
-#nice .code-snippet__fix code {
-  text-align: left;
-  display: block;
-  white-space: pre;
-  display: flex;
-  position: relative;
-  font-family: Monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  padding: 0px;
-}
 
 #nice .footnote-word {
   color: #1e6bb8;

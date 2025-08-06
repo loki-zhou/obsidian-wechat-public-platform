@@ -11,7 +11,6 @@ export const codeStyle = `/*
   padding: 2px 6px !important;
   border-radius: 3px !important;
   font-family: 'Courier New', Consolas, Monaco, monospace !important;
-  font-size: 14px !important;
   border: 1px solid #e1e8ed !important;
 }
 
@@ -23,12 +22,12 @@ export const codeStyle = `/*
   border-radius: 5px !important;
   margin: 15px 0 !important;
   font-family: 'Courier New', Consolas, Monaco, monospace !important;
-  font-size: 14px !important;
   line-height: 1.5 !important;
   overflow-x: auto !important;
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
   border: 1px solid #3e4451 !important;
+  font-size: 1em !important;
 }
 
 #nice pre code {
@@ -44,7 +43,7 @@ export const codeStyle = `/*
 /* 代码块语言标签 */
 #nice .code-lang-label {
   color: #61aeee !important;
-  font-size: 12px !important;
+  font-size: 0.8em !important;
   margin-bottom: 8px !important;
   opacity: 0.8 !important;
   font-weight: normal !important;
@@ -99,7 +98,6 @@ export const codeStyle = `/*
   padding: 12px !important;
   margin: 10px 0 !important;
   font-family: 'Courier New', Consolas, Monaco, monospace !important;
-  font-size: 14px !important;
   line-height: 1.4 !important;
   color: #333333 !important;
   overflow-x: auto !important;
@@ -109,7 +107,6 @@ export const codeStyle = `/*
 
 /* 微信公众号兼容的带行号代码块样式 */
 #nice .code-snippet__fix {
-  font-size: 14px !important;
   margin: 10px 0 !important;
   display: block !important;
   color: #333 !important;
@@ -167,7 +164,6 @@ export const codeStyle = `/*
   border-radius: 0px !important;
   -webkit-overflow-scrolling: touch !important;
   text-align: left !important;
-  font-size: 14px !important;
   display: block !important;
   white-space: pre !important;
   display: flex !important;
