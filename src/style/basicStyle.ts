@@ -4,14 +4,14 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 #nice {
   font-size: 16px;
   color: black;
-  padding: 0 10px;
+  padding: 0 0px;
   line-height: 1.6;
   word-spacing: 0px;
   letter-spacing: 0px;
   word-break: break-word;
   word-wrap: break-word;
   text-align: left;
-  font-family: Optima, 'Microsoft YaHei', PingFangSC-light, serif;
+  font-family: Optima, 'PingFang SC', 'Microsoft YaHei', serif;
   margin-top: -10px; /*解决开头空隙过大问题*/
 }
 
@@ -181,9 +181,9 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 }
 #nice pre code {
   display: -webkit-box;
-  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  font-family: Monaco, Consolas, Operator Mono, Menlo, monospace;
   border-radius: 0px;
-  font-size: 12px;
+  font-size: 16px;
   -webkit-overflow-scrolling: touch;
 }
 #nice pre code span {
@@ -193,14 +193,14 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 /*行内代码*/
 #nice p code,
 #nice li code {
-  font-size: 14px;
+  font-size: 16px;
   word-wrap: break-word;
   padding: 2px 4px;
   border-radius: 4px;
   margin: 0 2px;
   color: #1e6bb8;
   background-color: rgba(27,31,35,.05);
-  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  font-family: Monaco, Consolas, Operator Mono, Menlo, monospace;
   word-break: break-all;
 }
 
@@ -313,12 +313,12 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 }
 #nice .code-snippet__fix code {
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   display: block;
   white-space: pre;
   display: flex;
   position: relative;
-  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  font-family: Monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
   padding: 0px;
 }
 
