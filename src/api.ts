@@ -246,7 +246,9 @@ export default class ApiManager {
 				const imgresp = await requestUrl(path);
 				blobBytes = imgresp.arrayBuffer
 			} else {
-				let nPath = normalizePath(path);
+				// URL解码处理
+				let decodedPath = decodeURIComponent(path);
+				let nPath = normalizePath(decodedPath);
 				if (nPath.startsWith("./")) {
 					nPath = nPath.slice(2);
 				}
@@ -255,7 +257,8 @@ export default class ApiManager {
 					const data = await this.app.vault.readBinary(imgfile);
 					blobBytes = data
 				} else {
-					new Notice('Please input correct file relative path in obsidian');
+					new Notice(`无法找到文件: ${path} (解析后: ${nPath})`);
+					console.error(`File not found: original=${path}, resolved=${nPath}`);
 					return
 				}				
 			}
@@ -678,6 +681,31 @@ export default class ApiManager {
 		return parsedContent
 	}
 
+	/**
+	 * 解析图片路径，处理URL编码和相对路径
+	 */
+	private resolveImagePath(filePath: string, imgpath: string): string {
+		// URL解码处理，将%20等编码转换为实际字符
+		let decodedPath = decodeURIComponent(imgpath);
+		let nPath = normalizePath(decodedPath);
+		
+		// 如果以./开头，拼接当前文件路径
+		if (nPath.startsWith("./")) {
+			nPath = filePath + nPath.slice(1);
+		} 
+		// 如果不是HTTP链接且不是绝对路径，尝试相对于当前文件路径
+		else if (!nPath.startsWith("http") && !nPath.startsWith("/")) {
+			// 尝试直接路径
+			let directFile = this.app.vault.getAbstractFileByPath(nPath);
+			if (!(directFile instanceof TFile)) {
+				// 如果直接路径找不到，尝试相对于当前文件路径
+				nPath = filePath + "/" + nPath;
+			}
+		}
+		
+		return nPath;
+	}
+
 	async uploadImageToWx(filePath:string, imgpath: string, fileName: string): Promise<string |undefined> {
         try {
 			const setings = get(settingsStore)
@@ -691,17 +719,15 @@ export default class ApiManager {
 				const imgresp = await requestUrl(imgpath);
 				blobBytes = imgresp.arrayBuffer
 			} else {
-				let nPath = normalizePath(imgpath);
-				if (nPath.startsWith("./")) {
-					nPath = filePath + nPath.slice(1);
-				}
+				const nPath = this.resolveImagePath(filePath, imgpath);
 				const imgfile = this.app.vault.getAbstractFileByPath(nPath);
 				// console.log(imgfile);
 				if (imgfile instanceof TFile) {
 					const data = await this.app.vault.readBinary(imgfile);
 					blobBytes = data
 				} else {
-					new Notice('Please input correct file relative path in obsidian');
+					new Notice(`无法找到图片文件: ${imgpath} (解析后: ${nPath})`);
+					console.error(`Image file not found: original=${imgpath}, resolved=${nPath}`);
 					return
 				}				
 			}
@@ -773,16 +799,14 @@ export default class ApiManager {
 				const imgresp = await requestUrl(imgpath);
 				blobBytes = imgresp.arrayBuffer
 			} else {
-				let nPath = normalizePath(imgpath);
-				if (nPath.startsWith("./")) {
-					nPath = filePath + nPath.slice(1);
-				}
+				const nPath = this.resolveImagePath(filePath, imgpath);
 				const imgfile = this.app.vault.getAbstractFileByPath(nPath);
 				if (imgfile instanceof TFile) {
 					const data = await this.app.vault.readBinary(imgfile);
 					blobBytes = data
 				} else {
-					new Notice('Please input correct file relative path in obsidian');
+					new Notice(`无法找到图片文件: ${imgpath} (解析后: ${nPath})`);
+					console.error(`Image file not found: original=${imgpath}, resolved=${nPath}`);
 					return
 				}				
 			}
