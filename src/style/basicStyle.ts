@@ -2,7 +2,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 
 /*全局属性*/
 #nice {
-  font-size: 16px;
   color: black;
   padding: 0 0px;
   line-height: 1.6;
@@ -17,7 +16,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 
 /*段落*/
 #nice p {
-  font-size: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
   margin: 0;
@@ -38,22 +36,22 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
   color: black;
 }
 #nice h1 {
-  font-size: 24px;
+  font-size: 1.5em;
 }
 #nice h2 {
-  font-size: 22px;
+  font-size: 1.4em;
 }
 #nice h3 {
-  font-size: 20px;
+  font-size: 1.3em;
 }
 #nice h4 {
-  font-size: 18px;
+  font-size: 1.2em;
 }
 #nice h5 {
-  font-size: 16px;
+  font-size: 1.1em;
 }
 #nice h6 {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 #nice h1 .prefix,
@@ -183,7 +181,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
   display: -webkit-box;
   font-family: Monaco, Consolas, Operator Mono, Menlo, monospace;
   border-radius: 0px;
-  font-size: 16px;
   -webkit-overflow-scrolling: touch;
 }
 #nice pre code span {
@@ -193,7 +190,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 /*行内代码*/
 #nice p code,
 #nice li code {
-  font-size: 16px;
   word-wrap: break-word;
   padding: 2px 4px;
   border-radius: 4px;
@@ -224,7 +220,7 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
   margin-top: 5px;
   text-align: center;
   color: #888;
-  font-size: 14px;
+  font-size: 0.9em;
 }
 
 /*表格*/
@@ -248,7 +244,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 
 #nice table tr th,
 #nice table tr td {
-  font-size: 16px;
   border: 1px solid #ccc;
   padding: 5px 10px;
   text-align: left;
@@ -263,7 +258,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 /* background-color: rgba(0,0,0,0.03);*/
 #nice .code-snippet__fix {
   word-wrap: break-word !important;
-  font-size: 14px;
   margin: 10px 0;
   display: block;
   color: #333;
@@ -313,7 +307,6 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 }
 #nice .code-snippet__fix code {
   text-align: left;
-  font-size: 16px;
   display: block;
   white-space: pre;
   display: flex;
@@ -348,7 +341,7 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 
 #nice .footnote-item p {
   display: inline;
-  font-size: 14px;
+  font-size: 0.9em;
   width: 90%;
   padding: 0px;
   margin: 0;

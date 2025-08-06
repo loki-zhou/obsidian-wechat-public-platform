@@ -96,11 +96,11 @@ export async function markedParse(content:string, op:ParseOptions, extensions:an
 				if (!processedLine || processedLine.trim() === "") {
 					processedLine = "&nbsp;";
 				}
-				codeLines.push(`<code style="border-radius: 0px; -webkit-overflow-scrolling: touch; text-align: left; font-size: 16px; display: block; white-space: pre; display: flex; position: relative; font-family: Monaco, Consolas, 'Liberation Mono', Menlo, Courier, monospace; padding: 0px;"><span class="code-snippet_outer" style="line-height: 26px;">${processedLine}</span></code>`);
+				codeLines.push(`<code style="border-radius: 0px; -webkit-overflow-scrolling: touch; text-align: left; display: block; white-space: pre; display: flex; position: relative; font-family: Monaco, Consolas, 'Liberation Mono', Menlo, Courier, monospace; padding: 0px;"><span class="code-snippet_outer" style="line-height: 26px;">${processedLine}</span></code>`);
 			}
 		});
 
-		return `<section class="code-snippet__fix code-snippet__js" data-tool="markdown.com.cn编辑器" style="font-size: 16px; margin: 10px 0; display: block; color: #333; position: relative; background-color: rgba(0,0,0,0.03); border: 1px solid #f0f0f0; border-radius: 2px; display: flex; line-height: 20px; word-wrap: break-word !important;">
+		return `<section class="code-snippet__fix code-snippet__js" data-tool="markdown.com.cn编辑器" style="margin: 10px 0; display: block; color: #333; position: relative; background-color: rgba(0,0,0,0.03); border: 1px solid #f0f0f0; border-radius: 2px; display: flex; line-height: 20px; word-wrap: break-word !important;">
 			<ul class="code-snippet__line-index code-snippet__js" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; counter-reset: line; flex-shrink: 0; height: 100%; padding: 1em; list-style-type: none; padding: 16px; margin: 0;">
 				${lineNumbers.join('')}
 			</ul>

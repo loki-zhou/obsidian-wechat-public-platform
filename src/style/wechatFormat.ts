@@ -19,10 +19,9 @@ export const wechatFormat = `/* 全局属性
  * 字体大小 font-size: 16px;
  * 首行缩进 text-indent: 2em;
  */
-#nice p {
+ #nice p {
   line-height: 1.8;
   color: #000000;
-  font-size: 16px;
   margin: 10px 0px;
 }
 
@@ -122,7 +121,6 @@ export const wechatFormat = `/* 全局属性
 #nice blockquote p {
   color: #000000;
   line-height: 1.5;
-  font-size: 16px;
   margin: 10px;
   padding: 0px;
 }
@@ -139,7 +137,6 @@ export const wechatFormat = `/* 全局属性
 #nice strong {
   color: #ff3502;
   line-height: 1.5;
-  font-size: 16px;
 }
 
 /* 斜体 */
@@ -179,7 +176,6 @@ export const wechatFormat = `/* 全局属性
 #nice p code, #nice li code {
   color: #ff3502;
   line-height: 1.5;
-  font-size: 16px;
   padding: 3px 5px;
   border-radius: 2px;
 }
@@ -190,7 +186,6 @@ export const wechatFormat = `/* 全局属性
  * background: #f8f5ec;
  */
 #nice pre code {
-  font-size: 16px;
   display: block;
 }
 
@@ -207,7 +202,6 @@ export const wechatFormat = `/* 全局属性
 /* 脚注文字 */
 #nice .footnote-word {
   color: #ff3502;
-  font-size: 16px;
   line-height: 1.5;
   font-weight: normal;
 }
