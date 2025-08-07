@@ -5,8 +5,24 @@
 
 /*自定义样式，实时生效*/
 
+
 #nice {
   font-size: 17px;
+  letter-spacing: 0px; /* 默认无间距，由类名控制 */
+  word-spacing: 0px; /* 增加词间距 */
+  line-height: 1.8; /* 增加行高 */
+}
+
+
+
+/* 中文文本间距 - 覆盖基础样式 */
+#nice .chinese-text {
+  letter-spacing: 0.06em !important;
+}
+
+/* 英文文本无间距 - 确保英文字母紧贴 */
+#nice .english-text {
+  letter-spacing: 0.03em !important;
 }
 
 /* 全局属性
@@ -29,6 +45,10 @@
   */
  #nice p {
    text-align: justify;
+   letter-spacing: 0px; /* 默认无间距，由类名控制 */
+   word-spacing: 3px; /* 增加词间距 */
+   line-height: 1.8; /* 保持行高 */
+   text-justify: inter-word; /* 优化英文单词间的间距 */
  }
  
  /* 一级标题 */
@@ -98,7 +118,10 @@
  }
  
  /* 列表内容 */
- #nice li {}
+ #nice li {
+   letter-spacing: 0px; /* 默认无间距，由类名控制 */
+   line-height: 1.8; /* 保持行高 */
+ }
  
  /* 引用
   * 左边缘颜色 border-left-color: black;
@@ -109,10 +132,14 @@
    border-right: 2px solid #888;
    padding-left: 1em;
    color: #777;
+   font-style: normal !important;
  }
  
  /* 引用文字 */
- #nice blockquote p {}
+ #nice blockquote p {
+   font-style: normal !important;
+   line-height: 1.8; /* 保持行高 */
+ }
  
  /* 链接 */
  #nice a {

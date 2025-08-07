@@ -14,6 +14,16 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
   margin-top: -10px; /*解决开头空隙过大问题*/
 }
 
+/* 中文文本间距设置 */
+#nice .chinese-text {
+  letter-spacing: 0.05em;
+}
+
+/* 英文文本保持无间距 */
+#nice .english-text {
+  letter-spacing: 0px;
+}
+
 /*段落*/
 #nice p {
   padding-top: 8px;
@@ -103,7 +113,7 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 /*引用*/
 #nice blockquote {
   display: block;
-  font-size: 0.9em;
+  font-size: inherit;
   overflow: auto;
   overflow-scrolling: touch;
   border-left: 3px solid rgba(0, 0, 0, 0.4);

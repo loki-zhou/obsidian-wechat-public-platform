@@ -4,6 +4,101 @@ import hljs from "highlight.js";
 import {calloutRender} from "./callouts";
 import { bgHighlight } from "./bghighlight";
 
+// 中文字符正则表达式
+const chineseRegex = /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\u30a0-\u30ff]/;
+const englishRegex = /[a-zA-Z]/;
+
+// 辅助函数，用于对纯文本应用间距逻辑
+function applySpacing(text: string): string {
+    if (!text) return text;
+
+    // 如果文本很短或者是纯符号，直接返回
+    if (text.length < 2 || !/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\u30a0-\u30ffa-zA-Z]/.test(text)) {
+        return text;
+    }
+
+    let result = '';
+    let currentSegment = '';
+    let currentType = null; // 'chinese' | 'english' | 'other'
+
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        let charType = null;
+
+        if (chineseRegex.test(char)) {
+            charType = 'chinese';
+        } else if (englishRegex.test(char)) {
+            charType = 'english';
+        } else {
+            charType = 'other';
+        }
+
+        if (currentType !== null && currentType !== charType && currentSegment) {
+            if (currentType === 'chinese') {
+                result += `<span class="chinese-text">${currentSegment}</span>`;
+            } else if (currentType === 'english') {
+                result += `<span class="english-text">${currentSegment}</span>`;
+            } else {
+                result += currentSegment;
+            }
+            currentSegment = '';
+        }
+
+        currentSegment += char;
+        currentType = charType;
+    }
+
+    if (currentSegment) {
+        if (currentType === 'chinese') {
+            result += `<span class="chinese-text">${currentSegment}</span>`;
+        } else if (currentType === 'english') {
+            result += `<span class="english-text">${currentSegment}</span>`;
+        } else {
+            result += currentSegment;
+        }
+    }
+
+    return result;
+}
+
+// 处理混合中英文文本的函数（已重构）
+function processTextWithLanguageClasses(text: string): string {
+    if (!text) return text;
+
+    // 如果包含HTML标签，直接返回避免破坏
+    if (text.includes('<') || text.includes('>')) {
+        return text;
+    }
+
+    // 通过分割HTML实体来分别处理文本和实体
+    const parts = text.split(/(&[a-zA-Z0-9#]+;)/g);
+
+    const processedParts = parts.map(part => {
+        if (!part) return '';
+        // 如果部分是HTML实体，则原样返回
+        if (part.startsWith('&') && part.endsWith(';')) {
+            return part;
+        }
+        // 否则，对该部分应用间距逻辑
+        return applySpacing(part);
+    });
+
+    return processedParts.join('');
+}
+
+// HTML转义函数
+function escapeHtml(text: string): string {
+    const htmlEscapes: { [key: string]: string } = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;'
+    };
+    
+    return text.replace(/[&<>"']/g, (match) => htmlEscapes[match as keyof typeof htmlEscapes]);
+}
+
 
 export interface ParseOptions {
     lineNumber: boolean;
@@ -55,7 +150,7 @@ function EmbedBlockMark() {
 			}
 		},
 		renderer: (token: Tokens.Generic) => {
-			return `<span data-txt="${token.text}"></span}`;
+			return `<span data-txt="${token.text}"></span>`;
 		}
 	}
 }
@@ -69,6 +164,27 @@ export async function markedParse(content:string, op:ParseOptions, extensions:an
 	m.use(markedOptiones);
 
 	const renderer = new Renderer();
+	
+	// 重写文本渲染器来处理中英文
+	renderer.text = (text: string) => {
+		return processTextWithLanguageClasses(text);
+	};
+	
+	// 重写段落渲染器
+	renderer.paragraph = (text: string) => {
+		return `<p>${text}</p>\n`;
+	};
+	
+	// 重写标题渲染器
+	renderer.heading = (text: string, level: number, raw: string) => {
+		return `<h${level}>${text}</h${level}>\n`;
+	};
+	
+	// 重写列表项渲染器
+	renderer.listitem = (text: string) => {
+		return `<li section>${text}</li>\n`;
+	};
+	
 	renderer.code = (code: string, lang: string | undefined, escaped: boolean | undefined) => {
 		let highlightedCode = code;
 		const language = lang || 'js';
