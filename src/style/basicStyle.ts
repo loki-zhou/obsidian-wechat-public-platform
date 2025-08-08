@@ -103,7 +103,7 @@ export  const basicStyle  = `/*默认样式，最佳实践*/
 /*引用*/
 #nice blockquote {
   display: block;
-  font-size: 0.9em;
+  font-size: 1.0em;
   overflow: auto;
   overflow-scrolling: touch;
   border-left: 3px solid rgba(0, 0, 0, 0.4);
